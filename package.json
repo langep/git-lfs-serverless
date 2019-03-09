@@ -1,0 +1,22 @@
+{
+  "name": "git-lfs-serverless",
+  "version": "0.0.0",
+  "description": "A Git LFS server running in serverless environment using AWS Lambda and S3.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/langep/git-lfs-serverless.git"
+  },
+  "keywords": [
+    "git-lfs"
+  ],
+  "author": "Patrick Lange <mail@langep.com> (https://langep.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/langep/git-lfs-serverless/issues"
+  },
+  "homepage": "https://github.com/langep/git-lfs-serverless#readme"
+}
