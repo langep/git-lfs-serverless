@@ -1,11 +1,16 @@
 # Git LFS Serverless 
 
-A Git LFS server running in serverless environment using AWS Lambda and S3. This works by creatign presigned 
+A Git LFS server running in a serverless environment using AWS Lambda and S3. This works by creatign presigned 
 S3 URLs after using HTTP Basic Authentication backed by AWS Secret Manager.
+
+**Currently, this only works in us-east-1.**
+
+This project was mainly created because I was playing around in Unity 3d and was looking for a better way to handle large binary assets. Github does support LFS but I thought it would be a great learning experience to create my own implementation in a serverless fashion.
 
 # TODO:
 - Error handling if files are missing
 - Implement [Git LFS File Locking API](https://github.com/git-lfs/git-lfs/blob/master/docs/api/locking.md)
+- Make AWS Region independent.
 
 # Requirements
 - [serverless](https://serverless.com/) Install with `npm install serverless -g`
@@ -27,6 +32,8 @@ as JSON of the following format:
     ]
 }
 ```
+
+GIT LFS Serverless uses `git-lfs-serverless-users` as secret-id by default but you can modify this inside the `serverless.yaml` file.
 
 **Don't actually use these credentals.**
 For example, if you want to create a user "admin" with password "secret" you can run following command: 
