@@ -1,6 +1,6 @@
 {
   "name": "git-lfs-serverless",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "A Git LFS server running in serverless environment using AWS Lambda and S3.",
   "author": "Patrick Lange <mail@langep.com> (https://langep.com)",
   "license": "MIT",

@@ -1,0 +1,57 @@
+service:
+  name: git-lfs-serverless
+
+frameworkVersion: ">=1.0.0 <2.0.0"
+
+custom:
+  secretId: git-lfs-serverless-users
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  logRetentionInDays: 7
+  environment:
+    BUCKET_NAME: 
+      Ref: GitLFSBucket
+  iamRoleStatements:
+    -  Effect: "Allow"
+       Action:
+         - "*"
+       Resource:
+         Fn::Join:
+           - ""
+           - - "arn:aws:s3:::"
+             - Ref: GitLFSBucket
+             - "/*" 
+    -  Effect: "Allow"
+       Action:
+         - "secretsmanager:GetSecretValue"
+       Resource:
+         Fn::Join:
+           - ""
+           - - "arn:aws:secretsmanager:"
+             - Ref: 'AWS::Region'
+             - ":"
+             - Ref: 'AWS::AccountId'
+             - ":secret:${self:custom.secretId}*" 
+
+functions:
+  authorizer:
+    handler: handler.authorizer
+    environment:
+      SSM_USERS_SECRET_ID: ${self:custom.secretId}
+  batch:
+    handler: handler.batch
+    description: Implements Git LFS batch API
+
+    events:
+      - http:
+          path: objects/batch
+          method: post
+          authorizer:
+            name: authorizer
+
+resources:
+  Resources:
+    GitLFSBucket:
+      Type: AWS::S3::Bucket
