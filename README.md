@@ -83,8 +83,9 @@ In addition, make sure you disable automatic content type detection. Otherwise, 
 git config lfs.contentType false
 ```
 
+## Credentials Management
 
-
+You probably want to setup a [custom credentials cacher](https://github.com/git-lfs/git-lfs/blob/master/docs/api/authentication.md#git-credentials) because you would need to enter your credentials a lot.
 
 
 
